@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+}
+
+group 'org.tinger'
+version '1.0-SNAPSHOT'
+
+repositories {
+    maven {
+        allowInsecureProtocol = true
+        url 'http://localhost:10001/repository/maven-tinger/'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.caucho:hessian:${hessian_version}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jackson_version}"
+    implementation "com.fasterxml.jackson.core:jackson-core:${jackson_version}"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:${jackson_version}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jackson_version}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jackson_version}"
+    implementation "com.fasterxml.jackson.module:jackson-module-parameter-names:${jackson_version}"
+}
+
+def getRepositoryUrl() {
+    return isSnapshot() ? SNAPSHOT_REPOSITORY_URL : RELEASE_REPOSITORY_URL
+}
+
+def isSnapshot() {
+    return version.endsWith("SNAPSHOT")
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+}
+
+/*
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            allowInsecureProtocol = true
+            url = getRepositoryUrl()
+            credentials {
+                username = "${NEXUS_USERNAME}"
+                password = "${NEXUS_PASSWORD}"
+            }
+        }
+    }
+}*/
