@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'maven-publish'
+
 }
 
 group 'org.tinger'
@@ -35,7 +37,6 @@ task sourceJar(type: Jar) {
     from sourceSets.main.allSource
 }
 
-/*
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -52,4 +53,4 @@ publishing {
             }
         }
     }
-}*/
+}

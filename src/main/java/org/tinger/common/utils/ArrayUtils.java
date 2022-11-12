@@ -52,6 +52,7 @@ public class ArrayUtils {
         return collection.toArray(instance);
     }
 
+    @SuppressWarnings("unchecked")
     public static <T> T[] attach(T[] original, T... addition) {
         if (original == null && addition == null) {
             return null;
