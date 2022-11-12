@@ -1,5 +1,6 @@
 package org.tinger.common.utils;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Arrays;
@@ -26,6 +27,14 @@ public class ClassUtils {
             }
         }
         return classLoader;
+    }
+
+    public static <T extends Annotation> T getAnnotation(Class<?> type, Class<T> annoType) {
+        if (type == null || annoType == null) {
+            return null;
+        }
+
+        return type.getDeclaredAnnotation(annoType);
     }
 
     public static String getSimpleName(Class<?> type) {
