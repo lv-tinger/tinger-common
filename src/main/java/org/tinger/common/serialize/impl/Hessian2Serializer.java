@@ -11,7 +11,7 @@ import java.io.ByteArrayOutputStream;
 public class Hessian2Serializer implements Serializer {
 
     @Override
-    public <T> byte[] serialize(T object) {
+    public byte[] serialize(Object object) {
         if (object == null) {
             return null;
         }
@@ -37,9 +37,8 @@ public class Hessian2Serializer implements Serializer {
         }
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public <T> T deserialize(byte[] bytes, Class<T> type) {
+    public Object deserialize(byte[] bytes) {
         if (bytes == null) {
             return null;
         }
@@ -49,8 +48,7 @@ public class Hessian2Serializer implements Serializer {
         try {
             stream = new ByteArrayInputStream(bytes);
             input = new Hessian2Input(stream);
-            Object o = input.readObject();
-            return o == null ? null : (T) o;
+            return input.readObject();
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         } finally {

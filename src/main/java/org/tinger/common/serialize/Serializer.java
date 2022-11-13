@@ -3,9 +3,9 @@ package org.tinger.common.serialize;
 import org.tinger.common.utils.ServiceLoaderUtils;
 
 public interface Serializer {
-    <T> byte[] serialize(T object);
+    byte[] serialize(Object object);
 
-    <T> T deserialize(byte[] bytes, Class<T> type);
+    Object deserialize(byte[] bytes);
 
     static Serializer getInstance() {
         return HOLDER.serializer;
