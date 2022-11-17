@@ -37,6 +37,19 @@ public class TingerTranslator implements Translator {
         if (object == null) {
             return EMPTY_BYTES;
         }
+
+        ByteBuffer buffer = encodeByteBuff(object);
+        if (buffer == null) {
+            return EMPTY_BYTES;
+        }
+        return buffer.array();
+    }
+
+    @Override
+    public ByteBuffer encodeByteBuff(Object object) {
+        if (object == null) {
+            return null;
+        }
         byte[] b;
         int flags = 0;
         if (object instanceof String) {
@@ -82,7 +95,7 @@ public class TingerTranslator implements Translator {
         buffer.putInt(flags);
         buffer.put(b);
 
-        return buffer.array();
+        return buffer;
     }
 
     @Override
@@ -133,5 +146,10 @@ public class TingerTranslator implements Translator {
             default:
                 throw new RuntimeException();
         }
+    }
+
+    @Override
+    public Object decodeByteBuffer(ByteBuffer byteBuffer) {
+        return decode(byteBuffer.array());
     }
 }
