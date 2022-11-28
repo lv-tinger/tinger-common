@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'java-library'
     id 'maven-publish'
 }
 
@@ -18,14 +19,14 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
-    implementation "org.tinger:tinger-core:${version}"
-    implementation "com.caucho:hessian:${hessian_version}"
-    implementation "com.fasterxml.jackson.core:jackson-databind:${jackson_version}"
-    implementation "com.fasterxml.jackson.core:jackson-core:${jackson_version}"
-    implementation "com.fasterxml.jackson.core:jackson-annotations:${jackson_version}"
-    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jackson_version}"
-    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jackson_version}"
-    implementation "com.fasterxml.jackson.module:jackson-module-parameter-names:${jackson_version}"
+    api "org.tinger:tinger-core:${version}"
+    api "com.caucho:hessian:${hessian_version}"
+    api "com.fasterxml.jackson.core:jackson-databind:${jackson_version}"
+    api "com.fasterxml.jackson.core:jackson-core:${jackson_version}"
+    api "com.fasterxml.jackson.core:jackson-annotations:${jackson_version}"
+    api "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jackson_version}"
+    api "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jackson_version}"
+    api "com.fasterxml.jackson.module:jackson-module-parameter-names:${jackson_version}"
 }
 
 def getRepositoryUrl() {
